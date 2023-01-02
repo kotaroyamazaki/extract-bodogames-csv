@@ -2,3 +2,4 @@
 __pycache__/
 *.csv
 chromedriver_local
+*.ipynb

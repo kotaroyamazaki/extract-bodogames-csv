@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     games = driver.find_elements(By.CLASS_NAME, "list--interests-item")
     outputs = []
-    for g in games:
+    for g in games[:5]:
         # main
         img_url = g.find_element(
             By.CLASS_NAME, "list--interests-item-image").find_element(By.TAG_NAME, "img").get_attribute("src")
@@ -77,6 +77,8 @@ if __name__ == "__main__":
         published_year = options[3].text
         outputs.append([title_ja, title_en, play_member, play_time,
                         play_age, published_year, desc, detail_url, img_url])
+
+    driver.quit()
 
     with open('outputs.csv', 'w') as f:
         writer = csv.writer(f, quotechar='"', quoting=csv.QUOTE_ALL)
