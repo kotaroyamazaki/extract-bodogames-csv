@@ -1,13 +1,20 @@
+import os
+from os.path import join, dirname
 import csv
+import requests
+import lxml.html
+import time
+
 from selenium import webdriver
 from selenium.webdriver.chrome import service as fs
 from selenium.webdriver.common.by import By
-
-import requests
 from bs4 import BeautifulSoup
-import lxml.html
+from dotenv import load_dotenv
 
-import time
+load_dotenv(verbose=True)
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 
 def init_driver(timeout_sec=15):
@@ -38,7 +45,6 @@ def scroll_to_end(driver):
 def get_desc(url):
     html = requests.get(url)
     dom = lxml.html.fromstring(html.text)
-    soup = BeautifulSoup(html.content, "html.parser")
     catchcopy = dom.xpath('//*[@id="games-catcharea"]/div[2]/h2')
     if catchcopy is not None and len(catchcopy):
         return catchcopy[0].text
@@ -51,7 +57,7 @@ def get_desc(url):
 
 if __name__ == "__main__":
     driver = init_driver()
-    driver.get("https://bodoge.hoobby.net/friends/17406/boardgames/have?search%5Bplayers%5D=&search%5Bplaytimes%5D=&search%5Bratings%5D=&search%5Bsort%5D=name_asc")
+    driver.get(os.environ.get('TARGET_URL'))
     scroll_to_end(driver)
 
     games = driver.find_elements(By.CLASS_NAME, "list--interests-item")
