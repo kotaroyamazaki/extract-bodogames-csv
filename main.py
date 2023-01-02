@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     games = driver.find_elements(By.CLASS_NAME, "list--interests-item")
     outputs = []
-    for g in games[:5]:
+    for g in games:
         # main
         img_url = g.find_element(
             By.CLASS_NAME, "list--interests-item-image").find_element(By.TAG_NAME, "img").get_attribute("src")
