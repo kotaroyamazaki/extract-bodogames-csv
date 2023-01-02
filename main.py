@@ -47,6 +47,8 @@ def get_desc(url):
     dom = lxml.html.fromstring(html.text)
     catchcopy = dom.xpath('//*[@id="games-catcharea"]/div[2]/h2')
     if catchcopy is not None and len(catchcopy):
+        # TODO: 改行に対応していない
+        # TODO: XPath では正常に取得できていない時がある https://bodoge.hoobby.net/games/fae
         return catchcopy[0].text
 
     texts = dom.xpath('//*[@id="games-catcharea"]/div[2]/div/p[2]')
