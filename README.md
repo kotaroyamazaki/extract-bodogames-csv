@@ -3,8 +3,14 @@
 [ボードゲーマ](https://bodoge.hoobby.net/)のユーザーのボードゲーム一覧ページから、ボードゲームのデータを CSV で出力するスクリプト
 `.env` の `TARGET_URL` に対象 URL を入力して起動することで CSV ファイルが出力されます。
 
+# 注意事項
 
-# セットアップ
+- 実行前にサイトのスクレイピングルールについて確認すること。 https://bodoge.hoobby.net/robots.txt
+- 連続的なアクセスに注意すること
+- データ取得の目的が明確であること
+
+
+## セットアップ
 
 1. 自身のChrome のバージョンを調べる。
 <img width="396" alt="image" src="https://user-images.githubusercontent.com/7589567/224527168-17429274-ffb6-4b26-9de5-35d9c4362457.png">
